@@ -2,17 +2,28 @@ package main
 
 import (
 	"fmt"
-	"net/http"
 	"io/ioutil"
+	"net/http"
 	"os"
+	//"log"
 	"regexp"
 )
 
 func main() {
+	fmt.Println(curlAndParse(os.Args[1]))
+
+	//http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+	//	fmt.Fprintf(w, curlAndParse("http://"+r.URL.Path[1:]))
+	//})
+	//log.Fatal(http.ListenAndServe(":8080", nil))
+}
+
+func curlAndParse(requestUrl string) string {
 	var client http.Client
-	resp, err := client.Get(os.Args[1])
+	resp, err := client.Get(requestUrl)
+	parsedCSV := ""
 	if err != nil {
-	    fmt.Println("FATAL")
+		fmt.Println("FATAL")
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode == http.StatusOK {
@@ -21,7 +32,7 @@ func main() {
 
 		stripLeadingWhitespace := regexp.MustCompile(`\n\s*`)
 		bodyString = stripLeadingWhitespace.ReplaceAllString(bodyString, "\n")
-		
+
 		extractContent := regexp.MustCompile(`(?s).*<form.*?>(.*)</form>.*`)
 		bodyString = extractContent.ReplaceAllString(bodyString, "$1")
 
@@ -29,21 +40,21 @@ func main() {
 		removeLineBreaks := regexp.MustCompile(`\n`)
 		stripTags := regexp.MustCompile(`<.*?>`)
 		removeLeadingColonAndWhitespace := regexp.MustCompile(`^[;\s]*`)
-		removeSpacePadding := regexp.MustCompile(`\s*;\s*`)
-		removeDoubleSemicolons := regexp.MustCompile(`;+`)
-		
+		removeColonPadding := regexp.MustCompile(`\s*;\s*`)
+		removeDoubleColons := regexp.MustCompile(`;+`)
+
 		_ = mergeTableData.ReplaceAllStringFunc(bodyString, func(match string) string {
 			processedMatch := stripTags.ReplaceAllString(match, "")
-			processedMatch = removeLineBreaks.ReplaceAllString(processedMatch,";")
+			processedMatch = removeLineBreaks.ReplaceAllString(processedMatch, ";")
 			processedMatch = removeLeadingColonAndWhitespace.ReplaceAllString(processedMatch, "")
-			processedMatch = removeLineBreaks.ReplaceAllString(processedMatch,";")
-			processedMatch = removeSpacePadding.ReplaceAllString(processedMatch,";")
-			processedMatch = removeDoubleSemicolons.ReplaceAllString(processedMatch,";")
-			fmt.Println(processedMatch)
+			processedMatch = removeColonPadding.ReplaceAllString(processedMatch, ";")
+			processedMatch = removeDoubleColons.ReplaceAllString(processedMatch, ";")
+			parsedCSV += processedMatch + "\n"
 			return ""
 		})
 		bodyString = ""
-		fmt.Println(bodyString)
+		return parsedCSV
+	} else {
+		return ""
 	}
-
 }
