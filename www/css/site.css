@@ -13,6 +13,7 @@ body {
   background-color: #E1E1E1;
   border-radius: 5px;
   padding: 10px;
+  grid-column: 1/ last;
 }
 
 .header {
