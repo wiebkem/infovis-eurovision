@@ -19,13 +19,19 @@
     <div class="row">
         <div class="col-md-3 col-sm-6 col-xs-12">
             <div class="box">
-              <!-- filters -->
-              filters
+                <div class="form-group">
+                  <label for="yearSelection">Select the year:</label>
+                  <select class="form-control" id="yearSelection"></select>
+                </div>
+
+                <div class="form-group">
+                  <label for="countrySelection">Select a country (or click on the map):</label>
+                  <select class="form-control" id="countrySelection"></select>
+                </div>
             </div>
         </div>
         <div class="col-md-9 col-sm-6 col-xs-12">
             <div class="box">
-              <!-- maps -->
 	      <svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="680" height="520" viewBox="1754 161 9938 7945" version="1.0" id="svg2" sodipodi:version="0.32" inkscape:version="0.48.3.1 r9886" sodipodi:docname="Countries of Europe.svg" inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <metadata id="metadata2585">
     <rdf:RDF>
@@ -41,7 +47,7 @@
     <style type="text/css" id="style10">
 *           { fill:none; }
 g.nationGroup path {fill:inherit;stroke:inherit}
-g.nationGroup, path        { fill:#C0C0C0; stroke:white; stroke-width:8; } 
+g.nationGroup, path        { fill:#C0C0C0; stroke:white; stroke-width:8; }
 #ocean {opacity:1;fill:none;fill-opacity:1}
 #lakes {opacity:0.4;fill:white;fill-opacity:1;stroke:none;stroke-width:8}
 
@@ -133,6 +139,7 @@ g.nationGroup, path        { fill:#C0C0C0; stroke:white; stroke-width:8; }
   </body>
 
   <!-- Custom scripts for this template -->
+  <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/d3.min.js"></script>
   <script src="js/site.js"></script>
