@@ -1,4 +1,5 @@
 var currentVotes = [];
+var currentCountryInfo = {};
 var defaultColor = "#acacac";
 var scoreColors = [
 	"#FFF0F0",//0
@@ -39,6 +40,21 @@ function fetchVotes(year) {
 		console.log('loaded votes for year ',year);
 		currentVotes = data;
 	});
+	d3.csv('data/'+year+'-countryinfo.csv', function (data) {
+		console.log('loaded country info for year ',year);
+		currentCountryInfo = {};
+		data.forEach( function(val) {
+			var code = val['Country code'];
+			currentCountryInfo[code] = {
+				'Artist': val['Artist'],
+				'Song': val['Song'],
+				'Total score': val['Total score'],
+				'Televoting score': val['Televoting score'],
+				'Jury score': val['Jury score'],
+				'Placement': val['Placement']
+			}
+		});
+	});
 }
 
 function renderVotes() {
@@ -47,7 +63,7 @@ function renderVotes() {
 		//maybe do something, idk
 	} else {
 		currentVotes.forEach(function (vote) {
-			if (vote['To'] == selectedCountry) {
+			if (vote['To'] == selectedCountry && +vote['Televoting points']!=0) {
 				setCountryFill(vote['From'], scoreColors[vote['Televoting points']]);
 			}
 		});

@@ -14,8 +14,17 @@ $(document).ready(function() {
     $('#countrySelection').change(function() {
         setSelectedCountry($(this).val());
         renderVotes();
+        renderCountryInfo();
     });
 });
+
+function renderCountryInfo() {
+	if (currentCountryInfo[selectedCountry] == undefined) {
+		console.log(selectedCountry,' did not participate in the final this year.');
+	} else {
+		
+	}
+}
 
 function setYearSelectOptions() {
     for(var i = yearEnd; i >= yearStart; i--) {
