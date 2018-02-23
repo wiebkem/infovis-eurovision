@@ -37,7 +37,7 @@ function fetchVotes(year) {
 }
 
 function renderVotes() {
-	$(".europe").style("fill",defaultColor);
+	$(".europe").css("fill",defaultColor);
 	if (selectedCountry == undefined) {
 		//maybe do something, idk
 	} else {
