@@ -28,3 +28,13 @@ body {
 .marginTop {
   margin-top: 15px;
 }
+
+.info-box {
+    display: none;
+}
+
+.info-box.active {
+    display: block;
+}
+
+

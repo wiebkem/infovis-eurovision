@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="countrySelection">Select a country (or click on the map):</label>
+                  <label for="countrySelection">Select a country:</label>
                   <select class="form-control" id="countrySelection">
                       <option default>Select a country</option>
                   </select>
@@ -33,9 +33,20 @@
             </div>
 
             <div class="box marginTop">
-              <span>Artist name</span>
-              <br />
-              <span>Artist song</span>
+                <div class="info-box active" id="unset">
+                    <p>Select a country to see more details.</p>
+                </div>
+
+                <div class="info-box" id="participated">
+                    <p><b>Artist: </b> <span id="artistname"></span></p>
+                    <p><b>Song: </b> <span id="songname"></span></p>
+                    <p><b>Total score: </b> <span id="total-score"></span></p>
+                    <p><b>Televoting score: </b> <span id="televoting-score"></span></p>
+                    <p><b>Jury score: </b> <span id="jury-score"></span></p>
+                </div>
+                <div class="info-box" id="did-not-participate">
+                    <p><span id="countryname"></span> did not participate in the final this year.</p>
+                </div>
             </div>
         </div>
         <div class="col-md-9 col-sm-6 col-xs-12">
