@@ -16,20 +16,13 @@ function setYearSelectOptions() {
 };
 
 function setCountrySelectOptions() {
-    var countries = [];
     d3.csv('data/map-code.csv', function (data) {
       console.log(data);
       data.forEach(function (entry) {
-        entry['Country'] = entry['Country'];
-        entry['Countrycode'] = entry['Countrycode'];
+        $("#countrySelection").append($('<option>', {
+           value: entry['Countrycode'],
+           text : entry['Country']
+        }));
       });
-      countries = data;
-    });
-
-    countries.forEach(function (country) {
-      $("#countrySelection").append($('<option>', {
-         value: country['Country'],
-         text : country['Countrycode']
-      }));
     });
 };
