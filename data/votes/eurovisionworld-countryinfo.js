@@ -1,5 +1,4 @@
 var fs = require('fs');
-console.log("From,To,Televoting points");
 
 //get requested year
 var year = ''+process.argv[2];
@@ -7,6 +6,15 @@ var year = ''+process.argv[2];
 //import year data
 eval(fs.readFileSync('json/'+year+'.js')+'');
 
-voting_point.forEach(function (val){
-	console.log(val[0]+','+val[1]+','+(voting_jurymembers==null ? val[2] : val[3]) );
+console.log("Country code,Artist,Song,Total score,Televoting score,Jury score,Placement");
+Object.keys(voting_table_main).forEach(function(countryCode){
+	console.log(
+		countryCode+','+
+		voting_songs[countryCode][0]+','+
+		voting_songs[countryCode][1]+','+
+		voting_table_main[countryCode][2]+','+
+		voting_table_main[countryCode][3]+','+
+		voting_table_main[countryCode][4]+','+
+		voting_table_main[countryCode][1]
+	)
 });
