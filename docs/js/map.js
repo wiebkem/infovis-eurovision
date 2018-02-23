@@ -32,12 +32,13 @@ function fetchVotes(year) {
 		//	entry['To'] = entry['To'];
 		//	entry['Points'] = +entry['Televoting points'];
 		//});
+		console.log('loaded votes for year ',year);
 		currentVotes = data;
 	});
 }
 
 function renderVotes() {
-	$(".europe").css("fill",defaultColor);
+	$("path").css("fill",defaultColor);
 	if (selectedCountry == undefined) {
 		//maybe do something, idk
 	} else {
