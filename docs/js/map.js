@@ -24,7 +24,7 @@ function setSelectedCountry(countryCode) {
 
 function setCountryFill(countryCode, color) {
 	if (countryCode == undefined) {return;}
-	d3.select("#"+countryCode)
+	d3.selectAll("#"+countryCode)
 		.style("fill", color);
 	console.log(countryCode + ';' + color);
 }
