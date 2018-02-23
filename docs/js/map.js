@@ -27,22 +27,23 @@ function setCountryFill(countryCode, color) {
 
 function fetchVotes(year) {
 	d3.csv('data/'+year+'.csv', function (data) {
-		data.forEach(function (entry) {
-			entry['From'] = entry['From'];
-			entry['To'] = entry['To'];
-			entry['Points'] = +entry['Televoting points'];
-		});
+		//data.forEach(function (entry) {
+		//	entry['From'] = entry['From'];
+		//	entry['To'] = entry['To'];
+		//	entry['Points'] = +entry['Televoting points'];
+		//});
 		currentVotes = data;
 	});
 }
 
 function renderVotes() {
+	$(".europe").style("fill",defaultColor);
 	if (selectedCountry == undefined) {
-		$(".europe").style("fill",defaultColor);
+		//maybe do something, idk
 	} else {
 		currentVotes.forEach(function (vote) {
 			if (vote['To'] == selectedCountry) {
-				setCountryFill(vote['From'], scoreColors[vote['Points']]);
+				setCountryFill(vote['From'], scoreColors[vote['Televoting points']]);
 			}
 		});
 		setCountryFill(selectedCountry, selectedColor);
