@@ -18,6 +18,10 @@ var scoreColors = [
 var selectedColor = "#2F80ED";
 var selectedCountry = undefined;
 
+function setSelectedCountry(countryCode) {
+	selectedCountry = countryCode;
+}
+
 function setCountryFill(countryCode, color) {
 	if (countryCode == undefined) {return;}
 	d3.select("#"+countryCode)

@@ -12,7 +12,8 @@ $(document).ready(function() {
         fetchVotes($(this).val());
     });
     $('#countrySelection').change(function() {
-        renderVotes($(this).val());
+        setSelectedCountry($(this).val());
+        renderVotes();
     });
 });
 
