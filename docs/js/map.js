@@ -1,22 +1,25 @@
 var currentVotes = [];
 var defaultColor = "#acacac";
 var scoreColors = [
-	"#000000",
-	"#111111",
-	"#222222",
-	"#333333",
-	"#444444",
-	"#555555",
-	"#666666",
-	"#777777",
-	"#888888",
-	"#999999",
-	"#aaaaaa",
-	"#bbbbbb",
+	"#FFF0F0",//0
+	"#FFE6E6",//1
+	"#FFD9D9",//2
+	"#FFCCCC",//3
+	"#FFBFBF",//4
+	"#FFB0B0",//5
+	"#FF9E9E",//6
+	"#FF8787",//7
+	"#FF6B6B",//8
+	"#purple",//9
+	"#FF4D4D",//10
+	"purple",//11
+	"#FF3838"//12
 ];
-var selectedColor = "red";
+var selectedColor = "#2F80ED";
+var selectedCountry = undefined;
 
 function setCountryFill(countryCode, color) {
+	if (countryCode == undefined) {return;}
 	d3.select("#"+countryCode)
 		.style("fill", color);
 	console.log(countryCode + ';' + color);
@@ -33,15 +36,15 @@ function fetchVotes(year) {
 	});
 }
 
-function renderVotes(countryCode) {
-	if (countryCode == undefined) {
+function renderVotes() {
+	if (selectedCountry == undefined) {
 		$(".europe").style("fill",defaultColor);
 	} else {
 		currentVotes.forEach(function (vote) {
-			if (vote['To'] == countryCode) {
+			if (vote['To'] == selectedCountry) {
 				setCountryFill(vote['From'], scoreColors[vote['Points']]);
 			}
 		});
-		setCountryFill(countryCode, selectedColor);
+		setCountryFill(selectedCountry, selectedColor);
 	}
 }
